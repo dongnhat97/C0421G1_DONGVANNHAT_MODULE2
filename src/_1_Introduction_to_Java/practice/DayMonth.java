@@ -27,6 +27,8 @@ public class DayMonth {
          default:
              System.out.print("Invalid input!");
              break;
+
      }
+
     }
 }
