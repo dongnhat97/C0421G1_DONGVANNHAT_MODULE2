@@ -12,83 +12,26 @@ public class NumberString {
         int hangChuc = (b % 100) / 10;
         int hangTram = b / 100;
         int hangDonVi = b - hangTram * 100 - hangChuc * 10;
+        int soDacBiet = (b%100);
 
-        soTram(hangTram);
-        soChuc(hangChuc);
-        soDonVi(hangDonVi);
+        if (b<=10) {
+            soDonVi(hangDonVi);
+        }else if (b<20) {
+            soDacBiet1(soDacBiet);
+        }else if (b<1000) {
+            soTram(hangTram);
+            if (hangChuc==1) {
+                soDacBiet1(soDacBiet);
+            }else {
+                soChuc(hangChuc);
+                soDonVi(hangDonVi);
+            }
+        }
 
-        switch (b) {
-            case 1:
-                System.out.println("one");
-                break;
-            case 2:
-                System.out.println("two");
-                break;
-            case 3:
-                System.out.println("three");
-                break;
-            case 4:
-                System.out.println("four");
-                break;
-            case 5:
-                System.out.println("five");
-                break;
-            case 6:
-                System.out.println("six");
-                break;
-            case 7:
-                System.out.println("seven");
-                break;
-            case 8:
-                System.out.println("eight");
-                break;
-            case 9:
-                System.out.println("nine");
-                break;
-            case 10:
-                System.out.println("ten");
-                break;
 
-            case 11:
-                System.out.println("eleven");
-                break;
-            case 12:
-                System.out.println("twelve");
-                break;
-//            case 13:
-//                System.out.println("thirteen");
-////            case 14:
-////                System.out.println("fourteen");
-////            case 15:
-////                System.out.println("fifteen");
-////            case 16:
-////                System.out.println("sixteen");
-////            case 17:
-////                System.out.println("seventeen");
-////            case 18:
-////                System.out.println("eighteen");
-////            case 19:
-////                System. out.println("nineteen");
-//            case 20:
-//                System.out.println("twenty");
-//            case 30:
-//                System.out.println("thirty");
-//            case 40:
-//                System.out.println("forty");
-//            case 50:
-//                System.out.println("fifty");
-//            case 60:
-//                System.out.println("sixty");
-//            case 70:
-//                System.out.println("seventy");
-//            case 80:
-//                System.out.println("eighty");
-//            case 90:
-//                System.out.println("ninety");
 
         }
 
-    }
 
     public static void soDonVi(int hangDonVi) {
         switch (hangDonVi) {
@@ -118,6 +61,9 @@ public class NumberString {
                 break;
             case 9:
                 System.out.println("nine");
+                break;
+            case 10:
+                System.out.println("ten");
                 break;
         }
     }
@@ -179,6 +125,37 @@ public class NumberString {
                 break;
             case 9:
                 System.out.println("nine hundred");
+                break;
+        }
+    }
+    public static void soDacBiet1(int dacBiet) {
+        switch (dacBiet) {
+            case 1:
+                System.out.println("eleven");
+                break;
+            case 2:
+                System.out.println("twele");
+                break;
+            case 3:
+                System.out.println("thirteen");
+                break;
+            case 4:
+                System.out.println("fourteen");
+                break;
+            case 5:
+                System.out.println("fifteen");
+                break;
+            case 6:
+                System.out.println("sixteen");
+                break;
+            case 7:
+                System.out.println("seventeen");
+                break;
+            case 8:
+                System.out.println("eighteen");
+                break;
+            case 9:
+                System.out.println("nineteen");
                 break;
         }
     }
