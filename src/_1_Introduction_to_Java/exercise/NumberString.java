@@ -9,6 +9,7 @@ public class NumberString {
         Scanner scanner = new Scanner(System.in);
         int b = scanner.nextInt();
 
+
         int hangChuc = (b % 100) / 10;
         int hangTram = b / 100;
         int hangDonVi = b - hangTram * 100 - hangChuc * 10;
@@ -130,31 +131,31 @@ public class NumberString {
     }
     public static void soDacBiet1(int dacBiet) {
         switch (dacBiet) {
-            case 1:
+            case 11:
                 System.out.println("eleven");
                 break;
-            case 2:
+            case 12:
                 System.out.println("twele");
                 break;
-            case 3:
+            case 13:
                 System.out.println("thirteen");
                 break;
-            case 4:
+            case 14:
                 System.out.println("fourteen");
                 break;
-            case 5:
+            case 15:
                 System.out.println("fifteen");
                 break;
-            case 6:
+            case 16:
                 System.out.println("sixteen");
                 break;
-            case 7:
+            case 17:
                 System.out.println("seventeen");
                 break;
-            case 8:
+            case 18:
                 System.out.println("eighteen");
                 break;
-            case 9:
+            case 19:
                 System.out.println("nineteen");
                 break;
         }

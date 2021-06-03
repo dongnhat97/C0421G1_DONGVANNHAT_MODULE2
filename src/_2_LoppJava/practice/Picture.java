@@ -1,4 +1,4 @@
-package LoppJava.practice;
+package _2_LoppJava.practice;
 import java.util.Scanner;
 public class Picture {
     public static void main(String[] args) {
