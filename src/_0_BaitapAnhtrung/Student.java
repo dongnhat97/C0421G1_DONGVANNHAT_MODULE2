@@ -1,4 +1,4 @@
-package _3_Array_Java.exercise;
+package _0_BaitapAnhtrung;
 
 public class Student {
     private int id;

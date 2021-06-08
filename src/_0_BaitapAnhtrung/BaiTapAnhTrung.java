@@ -1,11 +1,13 @@
-package _3_Array_Java.exercise;
+package _0_BaitapAnhtrung;
 
 import java.util.Scanner;
 public class BaiTapAnhTrung {
     public static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
         System.out.println("-------------------Chương trình quản lý sinh viên------------------");
-        Student []students = new Student[50];
+        Student[]students = new Student[50];
+
         while (true) {
             System.out.println("Menu chương trình");
             System.out.println("1. Xem danh sách sinh viên");
