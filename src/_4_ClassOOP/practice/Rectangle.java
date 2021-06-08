@@ -1,5 +1,4 @@
-package ClassOOP.practice;
-import java.util.Scanner;
+package _4_ClassOOP.practice;
 
 public class Rectangle {
     double width,height;

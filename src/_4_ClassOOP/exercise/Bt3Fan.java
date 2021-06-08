@@ -1,4 +1,4 @@
-package ClassOOP.exercise;
+package _4_ClassOOP.exercise;
 import java.util.Scanner;
 public class Bt3Fan {
     static Scanner sc = new Scanner(System.in);

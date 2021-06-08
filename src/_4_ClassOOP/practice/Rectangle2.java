@@ -1,4 +1,4 @@
-package ClassOOP.practice;
+package _4_ClassOOP.practice;
 import java.util.Scanner;
 public class Rectangle2 {
     public static Scanner sc = new Scanner(System.in);

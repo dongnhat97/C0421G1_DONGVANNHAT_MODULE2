@@ -1,4 +1,4 @@
-package ClassOOP.exercise;
+package _4_ClassOOP.exercise;
 
 import java.util.Scanner;
 
@@ -83,10 +83,15 @@ public class Fan {
         }
     }
 
-//    public static void main(String[] args) {
-//        System.out.println( new Fan().toString());
-//        System.out.println("Fan1");
-//        Fan fan1 = new Fan(Fan.FAST,)
-//    }
+    public static void main(String[] args) {
+        Fan defaultFan= new Fan();
+        System.out.println(defaultFan.toString());
+//        System.out.println( new Fan().toString()); cach 2
+        System.out.println("Fan1");
+        Fan fan1 = new Fan(Fan.FAST,false,5,"blue");
+        System.out.println(fan1.toString());
+        fan1.turnOn();
+        fan1.turOff();
+    }
 
 }
