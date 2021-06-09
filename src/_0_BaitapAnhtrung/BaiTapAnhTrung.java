@@ -3,10 +3,17 @@ package _0_BaitapAnhtrung;
 import java.util.Scanner;
 public class BaiTapAnhTrung {
     public static Scanner scanner = new Scanner(System.in);
-
+    public static Student[] students;
+    static {Student[]students = new Student[50];
+        students = new Student[50];
+        students[0] = new Student(1, "Trung", 33, "Đà Nẵng");
+        students[1] = new Student(2, "Nhật", 23, "Quảng Nam");
+        students[2] = new Student(3, "Tài", 24, "Quảng Ngãi");
+        students[3] = new Student(4, "Minh", 25, "Vinh");
+    }
     public static void main(String[] args) {
         System.out.println("-------------------Chương trình quản lý sinh viên------------------");
-        Student[]students = new Student[50];
+
 
         while (true) {
             System.out.println("Menu chương trình");
