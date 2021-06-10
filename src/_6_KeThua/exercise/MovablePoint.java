@@ -50,8 +50,10 @@ public class MovablePoint extends Point {
                 ", ySpeed=" + getY() + "  "+ Arrays.toString(getSpeed())+
                 '}';
     }
-    public void move() {
-        setX(getX()+getxSpeed());
-        setY(getY()+getySpeed());
+    public MovablePoint move() {
+        super.setX(super.getX()+getxSpeed());
+        super.setY(super.getY()+getySpeed());
+        return this;
+
     }
 }

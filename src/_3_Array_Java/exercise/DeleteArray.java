@@ -3,38 +3,46 @@ import java.util.Scanner;
 public class DeleteArray {
     public static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
-        int size;
-        int i;
-        int j;
-        int deleteNumber;
-        System.out.println("nhap do dai mang");
-        size = scanner.nextInt();
-        int[] arr = new int[size];
-
-        for (i = 0 ; i<arr.length;i++) {
-            System.out.println("nhap phan tu trong mang");
-            arr[i] = scanner.nextInt();
+        //khởi tạo mảng:
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter array length: ");
+        int length = input.nextInt();
+        int[] arr = new int[length];
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println("Enter element " + i);
+            arr[i] = input.nextInt();
         }
-        System.out.println("nhap phan tu ban muon xoa");
-         deleteNumber = scanner.nextInt();
+//        System.out.println("array: ");    //tại sao dùng print() KHÔNG được???
+//        for (int element : arr) {
+//            System.out.print(element + " ");  //tại sao dùng print(element + " ") KHÔNG được???
+//        }
+        //nhập số muốn xóa
+        System.out.println("\r Enter the number you want to delete: ");
+        int delNum = input.nextInt();
+        //kiểm tra số có trong mảng?
         boolean check = false;
-        for (i=0;i<arr.length;i++) {
-            if (deleteNumber==arr[i]) {
+        for (int i = 0; i < arr.length; i++) {
+            if (delNum == arr[i]) {
                 check = true;
-                System.out.println(i);
-                for (j=i;j<arr.length-1;j++) {
-                    arr[j] = arr[j+1];
-                    arr[j+1]=0;
+                System.out.println("This number at index " + i);
+                if (i == arr.length - 1) {
+                    arr[i] = 0;   //nếu phần tử cuối = số cần xóa ==> gán = 0 luôn, nếu không vòng lặp for bên dưới sẽ KHÔNG duyệt đc nó (vì j < arr.length - 1)
+                } else {
+                    for (int j = i; j < arr.length - 1; j++) {
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = 0;   // gán bằng 0, đẩy dần về cuối mảng
+                    }
+                    i--;
                 }
-                System.out.println("mang sau khi xoa phan tu");
-                for (int element: arr) {
-                    System.out.println(element);
-                }
-                break;
             }
         }
-        if (!check) {
-            System.out.println("khong co phan tu nay trong mang ");
+        if (check) {
+            System.out.println("array after delete: ");
+            for (int element : arr) {
+                System.out.print(element + " ");
+            }
+        } else {
+            System.out.println("NOT found this value in the array");
         }
     }
 }
