@@ -64,5 +64,5 @@ public class MyLinkedList<E> {
         return (E) data;
 
     }
-    public boolean
+//    public boolean
 }
