@@ -5,65 +5,71 @@ public class TennisGame {
     public static final int FIFTEEN = 1;
     public static final int THIRTY = 2;
     public static final int FORTY = 3;
-
-    public static String getScore(String player1Name, String player2Name, int m_score1, int m_score2) {
-        String score = "";
+    public static void similarPoint(int player1Score) {
+        switch (player1Score) {
+            case LOVE:
+                System.out.println("Love-All");
+                break;
+            case FIFTEEN:
+                System.out.println("Fifteen-All");
+                break;
+            case THIRTY:
+                System.out.println("Thirty-All");
+                break;
+            case FORTY:
+                System.out.println("Forty-All");
+                break;
+            default:
+                System.out.println("Deuce");
+                break;
+        }
+    }
+    public static void getMatchResult(int scoreOne, int scoreTwo) {
+        int minusResult = scoreOne - scoreTwo;
+        if (minusResult > 1) {
+            score = "Win for player 1";
+        } else if (minusResult == 1) {
+            score = "Advantage player 1";
+        } else if (minusResult == -1) {
+            score = "Advantage player 2";
+        } else if (minusResult<-1){
+            score = "Win for player 2";
+        }
+    }
+    public static void setMatchPoint(int scoreOne, int scoreTwo) {
         int tempScore = 0;
-        int play1_score = m_score1;
-        int play2_score = m_score2;
-        if (play1_score == play2_score) {
-            switch (play1_score) {
+        for (int i = 1; i < 3; i++) {
+            if (i == 1) {
+                tempScore = scoreOne;
+            } else {
+                score += "-";
+                tempScore = scoreTwo;
+            }
+            switch (tempScore) {
                 case LOVE:
-                    score = "Love-All";
+                    score += "Love";
                     break;
                 case FIFTEEN:
-                    score = "Fifteen-All";
+                    score += "Fifteen";
                     break;
                 case THIRTY:
-                    score = "Thirty-All";
+                    score += "Thirty";
                     break;
                 case FORTY:
-                    score = "Forty-All";
-                    break;
-                default:
-                    score = "Deuce";
+                    score += "Forty";
                     break;
             }
-        } else if (play1_score >= 4 || play2_score >= 4) {
-            int minusResult = play1_score - play2_score;
-            boolean play1_score_Bigger_play2_score = minusResult == 1;
-            if (play1_score_Bigger_play2_score) score = "Advantage player1";
-            else {
-                boolean play2_score_Bigger_play1_score = minusResult == -1;
-                if (play2_score_Bigger_play1_score) score = "Advantage player2";
-                else {
-                    boolean isPlay1win = minusResult >= 2;
-                    if (isPlay1win) score = "Win for player1";
-                    else score = "Win for player2";
-                }
-            }
+        }
+    }
+    public static String score = "";
+    public static String getScore(String nameOne, String nameTwo, int scoreOne, int scoreTwo) {
+        if (scoreOne == scoreTwo) {
+            similarPoint(scoreOne);
+        }
+        if (scoreOne >= 4 || scoreTwo >= 4) {
+            getMatchResult(scoreOne, scoreTwo);
         } else {
-            for (int i = 1; i < 3; i++) {
-                if (i == 1) tempScore = play1_score;
-                else {
-                    score += "-";
-                    tempScore = play2_score;
-                }
-                switch (tempScore) {
-                    case 0:
-                        score += "Love";
-                        break;
-                    case 1:
-                        score += "Fifteen";
-                        break;
-                    case 2:
-                        score += "Thirty";
-                        break;
-                    case 3:
-                        score += "Forty";
-                        break;
-                }
-            }
+            setMatchPoint(scoreOne, scoreTwo);
         }
         return score;
     }
