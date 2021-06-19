@@ -1,4 +1,4 @@
-package _9_List.exercise;
+package _10_List.exercise;
 import java.util.Arrays;
 public class MyList <E>{
     public int size = 0;

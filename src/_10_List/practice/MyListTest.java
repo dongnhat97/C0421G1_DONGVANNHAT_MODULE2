@@ -1,4 +1,4 @@
-package _9_List.practice;
+package _10_List.practice;
 
 public class MyListTest {
     public static void main(String[] args) {

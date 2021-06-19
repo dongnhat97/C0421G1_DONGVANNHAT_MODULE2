@@ -1,4 +1,4 @@
-package _9_List.practice;
+package _10_List.practice;
 
 public class TestLinked {
     public static void main(String[] args) {

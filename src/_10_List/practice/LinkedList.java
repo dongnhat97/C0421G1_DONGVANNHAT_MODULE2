@@ -1,4 +1,4 @@
-package _9_List.practice;
+package _10_List.practice;
 //import java.util.Arrays;
 public class LinkedList {
     private Node head;

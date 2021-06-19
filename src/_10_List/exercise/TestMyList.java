@@ -1,4 +1,4 @@
-package _9_List.exercise;
+package _10_List.exercise;
 
 public class TestMyList {
     public static void main(String[] args) {
