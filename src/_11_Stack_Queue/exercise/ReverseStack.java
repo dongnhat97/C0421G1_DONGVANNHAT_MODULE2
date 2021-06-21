@@ -32,5 +32,6 @@ public class ReverseStack {
         for (int i = 0 ; i <num1.length;i++) {
             num1[i] = stack1.pop();
         }
+        System.out.println(Arrays.toString(num1));
     }
 }

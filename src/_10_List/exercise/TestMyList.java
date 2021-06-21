@@ -3,11 +3,11 @@ package _10_List.exercise;
 public class TestMyList {
     public static void main(String[] args) {
         MyList<String> myList = new MyList<String>(10);
-        myList.add("Nhật ");
-        myList.add("Ha");
-        myList.add("Diep");
-        myList.add("Chien");
-        myList.add("Phuc");
+        myList.addLast("Nhật ");
+        myList.addLast("Ha");
+        myList.addLast("Diep");
+        myList.addLast("Chien");
+        myList.addLast("Phuc");
         myList.add(2,"chen");
         System.out.println("Before remove");
         System.out.println(myList.get(0));

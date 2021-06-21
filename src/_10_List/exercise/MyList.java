@@ -28,7 +28,7 @@ public class MyList <E>{
             throw new IndexOutOfBoundsException("index "+ index+ "out of bounds");
         }
     }
-    public void add(E element){
+    public void addLast(E element){
         if (size == elements.length){
             ensuacapa();
         }
