@@ -1,6 +1,6 @@
 package _12_Conllections.practice;
 
-public class Student {
+public class Student implements Comparable<Student> {
     private String name;
     private int age;
     private String address;
@@ -42,5 +42,10 @@ public class Student {
     @Override
     public String toString() {
         return "Student@name=" + name + ",age=" + age + ",address=" + address;
+    }
+
+    @Override
+    public int compareTo(Student student) {
+        return this.getName().compareTo(student.getName());
     }
 }

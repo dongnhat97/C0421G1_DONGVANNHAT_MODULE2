@@ -1,10 +1,12 @@
 package _12_Conllections.practice;
 import java.util.TreeMap;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.LinkedHashMap;
 public class TestMap {
     public static void main(String[] args) {
-        HashMap<String, Integer> hashMap = new HashMap<>();
+      
+        Map<String, Integer> hashMap = new HashMap<>();
         hashMap.put("Smith", 30);
         hashMap.put("Anderson", 31);
         hashMap.put("Lewis", 29);
