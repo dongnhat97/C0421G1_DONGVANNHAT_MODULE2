@@ -22,7 +22,7 @@ public class ProductManager {
         products.remove(2);
         System.out.println(products);
         System.out.println("sap xep theo thu tu tang dan");
-        Map<String, Product> map = new HashMap<String, Product>();
+//        Map<String, Product> map = new HashMap<String, Product>();
 //        sắp xếp tăng dần theo price
         PriceComparator priceComparator = new PriceComparator();
         products.sort(priceComparator);
@@ -31,17 +31,36 @@ public class ProductManager {
             System.out.println(element);
         }
 //     deleteID(products, 1);
-
-     editProduct(products, 4);
-        System.out.println("List Array sau khi chinh sua ");
-        for (Product element : products) {
-            System.out.println(element);
-        }
+//        để đây gần thi làm lại switch case để duyệt được liên tục
+      while (true) {
+          editProduct(products);
+          System.out.println("List Array sau khi chinh sua ");
+          for (Product element : products) {
+              System.out.println(element);
+          }
+          searchName(products);
+          System.out.println("sau khi tim ten ");
+          for (Product elemen: products) {
+              System.out.println(elemen);
+          }
+      }
+//     editProduct(products);
+//        System.out.println("List Array sau khi chinh sua ");
+//        for (Product element : products) {
+//            System.out.println(element);
+//        }
+//     searchName(products);
+//        System.out.println("sau khi tim ten ");
+//        for (Product elemen: products) {
+//            System.out.println(elemen);
+//        }
 
     }
 
 //    Hàm sửa thông tin sản phẩm qua ID
-    public static void editProduct(ArrayList<Product> products, Integer id) {
+    public static void editProduct(ArrayList<Product> products) {
+        System.out.println("nhap id muon thay doi");
+        int id = scanner.nextInt();
 
         System.out.println("nhap ID moi");
         int newID = scanner.nextInt();
@@ -64,10 +83,10 @@ public class ProductManager {
 
     }
 //    Hàm tìm kiếm sản phẩm theo tên
-    public static  void searchName(ArrayList<Product> products, String name) {
+    public static  void searchName(ArrayList<Product> products) {
         System.out.println("tim kiem san phan bang ten");
 
-        name = scanner.nextLine();
+       String name = scanner.nextLine();
 
         boolean check = false;
         int index = 0;

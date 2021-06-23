@@ -1,5 +1,6 @@
 package _12_Conllections.exercise;
 
+
 public class Product implements Comparable<Product> {
     private int id;
     private String name;
@@ -49,6 +50,10 @@ public class Product implements Comparable<Product> {
 
     @Override
     public int compareTo(Product o) {
-        return 0;
+        if (getName().equals(o.getName())) {
+            return 1;
+        }else {
+            return -1;
+        }
     }
 }
