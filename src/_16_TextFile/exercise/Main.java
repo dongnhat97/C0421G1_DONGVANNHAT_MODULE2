@@ -11,13 +11,9 @@ public class Main {
         File cloneOriginal;
         try {
             original = new File(pathOriginal);
-            if (!original.exists()){
-                original.createNewFile();
-            }
+
             cloneOriginal = new File(pathClone);
-            if (!cloneOriginal.exists()){
-                cloneOriginal.createNewFile();
-            }
+
             CopyFileText.copyFile(original, cloneOriginal);
             System.out.println("Successful!");
         } catch (IOException ex) {
