@@ -1,14 +1,14 @@
 package _20_Casetudy.models;
 
 public abstract class Person {
-    private int id;
-    private String birthDay;
-    private String gender;
-    private int cMND;
-    private int numberPhone;
-    private String eMail;
+    protected int id;
+    protected String birthDay;
+    protected String gender;
+    protected int cMND;
+    protected String numberPhone;
+    protected String eMail;
 
-    public Person(int id, String birthDay, String gender, int cMND, int numberPhone, String eMail) {
+    public Person(int id, String birthDay, String gender, int cMND, String numberPhone, String eMail) {
         this.id = id;
         this.birthDay = birthDay;
         this.gender = gender;
@@ -49,11 +49,11 @@ public abstract class Person {
         this.cMND = cMND;
     }
 
-    public int getNumberPhone() {
+    public String getNumberPhone() {
         return numberPhone;
     }
 
-    public void setNumberPhone(int numberPhone) {
+    public void setNumberPhone(String numberPhone) {
         this.numberPhone = numberPhone;
     }
 

@@ -1,6 +1,8 @@
 package _0_BaitapAnhtrung;
 
-public class PerSon {
+import java.io.Serializable;
+
+public class PerSon  {
     private int id;
     private String name;
     private int age;
