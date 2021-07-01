@@ -16,8 +16,9 @@ public class CustomerServiceImpl implements CustomerService {
     static List<Customer> customers = new LinkedList<>();
 
     static {
-        customers.add(new Customer(1, "16/6/1985", "Male", 172631932, "0982363617", "hellomoto@gmail.com", "Vip", "HaNoi"));
+        customers.add(new Customer(1, "Nhat", "1997", "Nam", "0982363617", "hellomoto@gmail.com", "Vip", "Vip","HaNoi"));
     }
+        String [] classifyArr = {"(Diamond,","Platinium,","Gold","Silver","Member"};
 
 
     @Override
@@ -42,41 +43,151 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void editCustomService() {
-        Customer customer1 = null;
-
+        boolean check = false;
+        int index = 0;
         int id = Integer.parseInt(inputOutput("Nhap ID ban muon chinh sua"));
-        String newBirthday = inputOutput("Nhap ngay sinh ban muon chinh sua");
-        String newGender = inputOutput("Nhap gioi tinh ban muon chinh sua");
-        int newCMND = Integer.parseInt(inputOutput("Nhap CMND ban muon chinh sua"));
-        String newNumberPhone = inputOutput("Nhap so dien thoai ban muon chinh sua");
-        String newEmail = inputOutput("Nhap email ban muon chinh sua");
-        String newClassify = inputOutput("Nhap thu hang ban muon chinh sua");
-        String newAddress = inputOutput("Nhap dia chi ban muon thay doi");
-
-        for (Customer customer: customers) {
-            if (id == customer.getId()) {
-                customer1 = customer;
+        for (int i = 0; i < customers.size(); i++) {
+            if (id == customers.get(i).getId()) {
+                check = true;
+                index = i;
+                break;
             }
         }
-       customer1.setBirthDay(newBirthday);
-       customer1.setGender(newGender);
-       customer1.setcMND(newCMND);
-       customer1.setNumberPhone(newNumberPhone);
-       customer1.seteMail(newEmail);
-       customer1.setClassify(newClassify);
-       customer1.setAddress(newAddress);
+        if (!check) {
+            System.out.println("ID ban nhap khong dung");
+        } else {
+            System.out.println("Moi ban nhap chuc nang muon chinh sua");
+            System.out.println("1:Chinh sua ngay sinh");
+            System.out.println("2:Chinh sua gioi tinh");
+            System.out.println("3:Chinh sua CMND");
+            System.out.println("4:Chinh sua so dien thoai");
+            System.out.println("5:Chinh sua gmaill");
+            System.out.println("6:Nhap phan loai ban muon chinh sua");
+            System.out.println("7:Nhap dia chi ban muon chinh sua");
+            System.out.println("0: Quay lai");
+            boolean check2 = false;
+            while (!check2) {
+                int choiceCustom = scanner.nextInt();
+                switch (choiceCustom) {
+                    case 1:
+                        String newBirthday = inputOutput("Moi ban nhap ngay sinh moi");
+                        customers.get(index).setBirthDay(newBirthday);
+                        check2 = true;
+                        break;
+                    case 2:
+                        String newMale = inputOutput("Nhap gioi tinh ban muon chih sua");
+                        customers.get(index).setGender(newMale);
+                        check2 = true;
+                        break;
+                    case 3:
+                        String newCMND = inputOutput("Nhap CMND moi");
+                        customers.get(index).setcMND(newCMND);
+                        check2 = true;
+                        break;
+                    case 4:
+                        String newNumberPhone = inputOutput("Nhap so dien thoai moi");
+                        customers.get(index).setNumberPhone(newNumberPhone);
+                        check2 = true;
+                        break;
+                    case 5:
+                        String newEmail = inputOutput("Nhap emaill moi");
+                        customers.get(index).seteMail(newEmail);
+                        break;
+                    case 6:
+                        boolean check3 = false;
+                        String classity = "";
+                        while (!check3) {
+                            for (int i = 0; i < classifyArr.length; i++) {
+                                System.out.println(i + " " + classifyArr[i]);
+                            }
+                            int choiceClassify = Integer.parseInt(inputOutput("Moi ban chinh sua theo menu"));
+                            switch (choiceClassify) {
+                                case 0:
+                                    classity = classifyArr[0];
+                                    check3 = true;
+                                    break;
+                                case 1:
+                                    classity = classifyArr[1];
+                                    check3 = true;
+                                    break;
+                                case 2:
+                                    classity = classifyArr[2];
+                                    check3 = true;
+                                    break;
+                                case 3:
+                                    classity = classifyArr[3];
+                                    check3 = true;
+                                    break;
+                                case 4:
+                                    classity = classifyArr[4];
+                                    check3 = true;
+                                    break;
+                            }
+                        }
+                        break;
+                    case 7:
+                        String newAddress = inputOutput("Nhap dia chi moi");
+                        customers.get(index).setAddress(newAddress);
+                        check2 = true;
+                        break;
+                    case 0:
+                        return;
+                    default:
+                        System.out.println("Khong co trong me nu chinh sua , vui long nhap lai");
+
+                }
+            }
+
+        }
+
+//
 
     }
     public void addCustomService() {
         int id = Integer.parseInt(inputOutput("Nhap ID ban muon them vao"));
+        String name = inputOutput("Moi ban nhap ten");
         String birthDay = inputOutput("Nhap ngay sinh ban muon them vao");
         String gender = inputOutput("Nhap gioi tinh ban muon them vao");
-        int CMND = Integer.parseInt(inputOutput("Nhap CMND ban muon them vao"));
+        String CMND = inputOutput("Nhap CMND ban muon them vao");
         String numberPhone = inputOutput("Nhap so dien thoai ban muon them vao");
         String email = inputOutput("Nhap email ban muon them vao");
-        String classify = inputOutput("Nhap thu hang ban muon them vao");
         String address = inputOutput("Nhap dia chi ban muon them vao");
-        Customer customer = new Customer(id,birthDay,gender,CMND,numberPhone,email,classify,address);
+        for (int i = 0 ; i< classifyArr.length;i++) {
+            System.out.println(i+" "+classifyArr[i]);
+        }
+        String newClassify = "";
+        boolean isTrue2 = false;
+        while (!isTrue2) {
+            int choicePopsition=  Integer.parseInt(inputOutput("Moi nhap cap bac ban muon them vao"));
+            switch (choicePopsition) {
+                case 0:
+                    newClassify = classifyArr[0];
+                    isTrue2 = true;
+                    break;
+                case 1:
+                    newClassify = classifyArr[1];
+                    isTrue2 = true;
+                    break;
+                case 2:
+                    newClassify = classifyArr[2];
+                    isTrue2 = true;
+                    break;
+                case 3:
+                    newClassify = classifyArr[3];
+                    isTrue2 = true;
+                    break;
+                case 4:
+                    newClassify = classifyArr[4];
+                    isTrue2 = true;
+                    break;
+                default:
+                    System.out.println("level khong co trong muc chon , moi ban nhap lai");
+                    break;
+            }
+        }
+
+
+        Customer customer = new Customer(id,name,birthDay,gender,CMND,numberPhone,email,newClassify,address);
         save(customer);
     }
 }

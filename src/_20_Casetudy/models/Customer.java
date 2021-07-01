@@ -4,8 +4,8 @@ public class Customer extends Person {
     String classify;
     String address;
 
-    public Customer(int id, String birthDay, String gender, int cMND, String numberPhone, String eMail, String classify, String address) {
-        super(id, birthDay, gender, cMND, numberPhone, eMail);
+    public Customer(int id, String name, String birthDay, String gender, String cMND, String numberPhone, String eMail, String classify, String address) {
+        super(id, name, birthDay, gender, cMND, numberPhone, eMail);
         this.classify = classify;
         this.address = address;
     }
@@ -32,10 +32,11 @@ public class Customer extends Person {
                 "classify='" + classify + '\'' +
                 ", address='" + address + '\'' +
                 ", id=" + id +
+                ", name='" + name + '\'' +
                 ", birthDay='" + birthDay + '\'' +
                 ", gender='" + gender + '\'' +
-                ", cMND=" + cMND +
-                ", numberPhone=" + numberPhone +
+                ", cMND='" + cMND + '\'' +
+                ", numberPhone='" + numberPhone + '\'' +
                 ", eMail='" + eMail + '\'' +
                 '}';
     }

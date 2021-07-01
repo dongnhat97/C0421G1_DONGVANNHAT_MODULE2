@@ -2,14 +2,16 @@ package _20_Casetudy.models;
 
 public abstract class Person {
     protected int id;
+    protected String name;
     protected String birthDay;
     protected String gender;
-    protected int cMND;
+    protected String cMND;
     protected String numberPhone;
     protected String eMail;
 
-    public Person(int id, String birthDay, String gender, int cMND, String numberPhone, String eMail) {
+    public Person(int id, String name, String birthDay, String gender, String cMND, String numberPhone, String eMail) {
         this.id = id;
+        this.name = name;
         this.birthDay = birthDay;
         this.gender = gender;
         this.cMND = cMND;
@@ -23,6 +25,14 @@ public abstract class Person {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getBirthDay() {
@@ -41,11 +51,11 @@ public abstract class Person {
         this.gender = gender;
     }
 
-    public int getcMND() {
+    public String getcMND() {
         return cMND;
     }
 
-    public void setcMND(int cMND) {
+    public void setcMND(String cMND) {
         this.cMND = cMND;
     }
 
@@ -69,10 +79,11 @@ public abstract class Person {
     public String toString() {
         return "Person{" +
                 "id=" + id +
+                ", name='" + name + '\'' +
                 ", birthDay='" + birthDay + '\'' +
                 ", gender='" + gender + '\'' +
                 ", cMND=" + cMND +
-                ", numberPhone=" + numberPhone +
+                ", numberPhone='" + numberPhone + '\'' +
                 ", eMail='" + eMail + '\'' +
                 '}';
     }
