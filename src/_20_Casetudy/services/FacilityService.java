@@ -1,5 +1,9 @@
 package _20_Casetudy.services;
 
-public interface FacilityService extends Service {
+import _20_Casetudy.models.Facility;
+
+public interface FacilityService extends Service<Facility> {
+    public void displayListMaintenance();
+
 
 }

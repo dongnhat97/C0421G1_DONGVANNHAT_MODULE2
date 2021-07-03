@@ -1,8 +1,8 @@
 package _20_Casetudy.models;
 
 public class Customer extends Person {
-    String classify;
-    String address;
+    private String classify;
+    private String address;
 
     public Customer(int id, String name, String birthDay, String gender, String cMND, String numberPhone, String eMail, String classify, String address) {
         super(id, name, birthDay, gender, cMND, numberPhone, eMail);

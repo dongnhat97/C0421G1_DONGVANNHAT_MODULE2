@@ -2,9 +2,10 @@ package _20_Casetudy.models;
 
 public class House extends Facility {
     String roomStandardS;
-    int floorsNumber;
+    String floorsNumber;
 
-    public House(String service, double area, double cost, int numberPerson, String rentalType, String roomStandardS, int floorsNumber) {
+
+    public House(String service, String area, String cost, String numberPerson, String rentalType, String roomStandardS, String floorsNumber) {
         super(service, area, cost, numberPerson, rentalType);
         this.roomStandardS = roomStandardS;
         this.floorsNumber = floorsNumber;
@@ -18,11 +19,11 @@ public class House extends Facility {
         this.roomStandardS = roomStandardS;
     }
 
-    public int getFloorsNumber() {
+    public String getFloorsNumber() {
         return floorsNumber;
     }
 
-    public void setFloorsNumber(int floorsNumber) {
+    public void setFloorsNumber(String floorsNumber) {
         this.floorsNumber = floorsNumber;
     }
 
@@ -30,12 +31,7 @@ public class House extends Facility {
     public String toString() {
         return "House{" +
                 "roomStandardS='" + roomStandardS + '\'' +
-                ", floorsNumber=" + floorsNumber +
-                ", service='" + service + '\'' +
-                ", area=" + area +
-                ", cost=" + cost +
-                ", numberPerson=" + numberPerson +
-                ", rentalType='" + rentalType + '\'' +
+                ", floorsNumber='" + floorsNumber + '\'' +
                 '}';
     }
 }

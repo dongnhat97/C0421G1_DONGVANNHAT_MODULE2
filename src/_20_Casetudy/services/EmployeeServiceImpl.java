@@ -1,7 +1,9 @@
 package _20_Casetudy.services;
 
 import _20_Casetudy.models.Employee;
+import _20_Casetudy.utils.ReadAndWriteByteStream;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -10,6 +12,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 //    Array List
     private static Scanner scanner = new Scanner(System.in);
     private static List<Employee> employees = new ArrayList<>();
+    private static File file = new File("C0421G1_DONGVANNHAT_MODULE22\\src\\_20_Casetudy\\data\\Employee.csv");
+    private static ReadAndWriteByteStream<Employee> readAndWriteByteStream = new ReadAndWriteByteStream<Employee>();
     static {
         employees.add(new Employee(1, "Nhat", "1997", "Nam", "098323838", "0978283122", "khong biet", "Giam doc","2000","pro"));
 
@@ -17,10 +21,15 @@ public class EmployeeServiceImpl implements EmployeeService {
     String[] qualificationArr = {"University", "College", "Intermediate", "Postgraduate"};
     String[] positionArr = {"Le Tan","Phuc vu","Chuyen vien","Giam sat","Quan ly","Giam doc"};
 
-
+    @Override
+    public List getAll() {
+      employees = readAndWriteByteStream.readFileByteStream(file);
+      return employees;
+    }
 
     @Override
     public void showInfo() {
+        getAll();
        for (Employee employee: employees) {
            if (employee!=null) {
                System.out.println(employee);
@@ -32,7 +41,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void save(Employee employee) {
        employees.add(employee);
     }
-    private  String inputOutput(String message) {
+    public  String inputOutput(String message) {
         System.out.println(message);
         String output = scanner.nextLine();
         return output;
@@ -54,7 +63,6 @@ public class EmployeeServiceImpl implements EmployeeService {
             System.out.println("Khong tim duoc ID ban muon chinh sua");
         } else {
             System.out.println("Moi ban chon muc chinh sua");
-
             System.out.println("1: Chinh sua ngay sinh");
             System.out.println("2: Chinh sua gioi tinh");
             System.out.println("3: Chinh sua CMND");
@@ -64,7 +72,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             System.out.println("7: Chinh sua muc luong");
             System.out.println("8: Chinh sua chuc vu");
             System.out.println("9: Quay lai");
-            int choice = scanner.nextInt();
+            int choice = choiceMenu();
             switch (choice) {
                 case 1:
                     String newBirthday = inputOutput("Nhap ngay sinh ban muon chinh sua");
@@ -81,9 +89,11 @@ public class EmployeeServiceImpl implements EmployeeService {
                 case 4:
                     String newNumberPhone = inputOutput("Nhap so dien thoai ban muon chinh sua");
                     employees.get(index).setNumberPhone(newNumberPhone);
+                    break;
                 case 5:
                     String newEmail = inputOutput("Nhap email ban muon chinh sua");
                     employees.get(index).seteMail(newEmail);
+                    break;
                 case 6:
                     System.out.println("Moi ban chon level nhan vien");
                     for (int i = 0; i < qualificationArr.length; i++) {
@@ -92,7 +102,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                     String qualification = "";
                     boolean isTrue = false;
                     while (!isTrue) {
-                        int choiceQual = Integer.parseInt(inputOutput("Moi nhap level ban muon chon"));
+                        int choiceQual = choiceMenu();
                         switch (choiceQual) {
                             case 0:
                                 qualification = qualificationArr[0];
@@ -127,7 +137,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                     String popSition = "";
                     boolean isTrue2 = false;
                     while (!isTrue2) {
-                        int choicePopsition = Integer.parseInt(inputOutput("Moi nhap level ban muon thay doi"));
+                        int choicePopsition = choiceMenu();
                         switch (choicePopsition) {
                             case 0:
                                 popSition = positionArr[0];
@@ -155,6 +165,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                                 break;
                             default:
                                 System.out.println("level khong co trong muc chon , moi ban nhap lai");
+                                break;
                         }
                     }
                     employees.get(index).setPosition(popSition);
@@ -180,14 +191,14 @@ public class EmployeeServiceImpl implements EmployeeService {
         String numberPhone = inputOutput("Nhap so dien thoai ban muon them vao");
         String email = inputOutput("Nhap email ban muon them vao");
         String Salary = inputOutput("Nhap muc luong ban muon them vao");
-
+        System.out.println("Them trinh do hoc van");
         for (int i = 0; i < qualificationArr.length; i++) {
             System.out.println(i + ") " + qualificationArr[i]);
         }
         String qualification = "";
         boolean isTrue = false;
         while (!isTrue) {
-            int choiceQual = Integer.parseInt(inputOutput("Nhap trinh do ban mon lua chon"));
+            int choiceQual = choiceMenu();
             switch (choiceQual) {
                 case 0:
                     isTrue = true;
@@ -252,7 +263,21 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         Employee employee = new Employee(id,name,birthDay,genDer,CMND,numberPhone,email,popSition,Salary,qualification);
         save(employee);
+        readAndWriteByteStream.writeFileByteStream(employees,file);
         System.out.println("Successful!");
 
+    }
+    public int choiceMenu() {
+        boolean check = false;
+        int choice = 0;
+        while (!check) {
+            try {
+                 choice = Integer.parseInt(inputOutput("Moi ban nhap menu"));
+                check = true;
+            }catch (NumberFormatException e) {
+                System.out.println("Nhap sai roi , moi ban nhap lai"+e.getMessage());
+            }
+        }
+        return choice;
     }
 }

@@ -4,4 +4,5 @@ public class exceptionTriangle extends Exception{
     public exceptionTriangle(String message) {
         super(message);
     }
+
 }

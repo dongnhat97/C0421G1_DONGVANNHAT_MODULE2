@@ -35,14 +35,16 @@ public class CustomerServiceImpl implements CustomerService {
         }
 
     }
-    private  String inputOutput(String message) {
+    private String inputOutput(String message) {
         System.out.println(message);
-        String output = scanner.nextLine();
+        String output = scanner.next();
         return output;
     }
 
     @Override
     public void editCustomService() {
+
+
         boolean check = false;
         int index = 0;
         int id = Integer.parseInt(inputOutput("Nhap ID ban muon chinh sua"));
@@ -70,12 +72,14 @@ public class CustomerServiceImpl implements CustomerService {
                 int choiceCustom = scanner.nextInt();
                 switch (choiceCustom) {
                     case 1:
-                        String newBirthday = inputOutput("Moi ban nhap ngay sinh moi");
+
+                        String newBirthday = inputOutput("ngay");
                         customers.get(index).setBirthDay(newBirthday);
                         check2 = true;
                         break;
                     case 2:
-                        String newMale = inputOutput("Nhap gioi tinh ban muon chih sua");
+
+                        String newMale = inputOutput("gioi tinh");
                         customers.get(index).setGender(newMale);
                         check2 = true;
                         break;
@@ -92,6 +96,7 @@ public class CustomerServiceImpl implements CustomerService {
                     case 5:
                         String newEmail = inputOutput("Nhap emaill moi");
                         customers.get(index).seteMail(newEmail);
+                        check2 = true;
                         break;
                     case 6:
                         boolean check3 = false;
@@ -124,6 +129,7 @@ public class CustomerServiceImpl implements CustomerService {
                                     break;
                             }
                         }
+                        customers.get(index).setClassify(classity);
                         break;
                     case 7:
                         String newAddress = inputOutput("Nhap dia chi moi");
@@ -132,8 +138,10 @@ public class CustomerServiceImpl implements CustomerService {
                         break;
                     case 0:
                         return;
+
                     default:
                         System.out.println("Khong co trong me nu chinh sua , vui long nhap lai");
+                        break;
 
                 }
             }

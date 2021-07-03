@@ -1,8 +1,10 @@
 package _20_Casetudy.controllers;
 
 import _20_Casetudy.models.Employee;
+import _20_Casetudy.models.Facility;
 import _20_Casetudy.services.CustomerServiceImpl;
 import _20_Casetudy.services.EmployeeServiceImpl;
+import _20_Casetudy.services.FacilityServiceImpl;
 
 import java.util.Scanner;
 
@@ -14,18 +16,19 @@ public class FuramaController {
     }
 
     public static void displayMainMenu() {
+        EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
         System.out.println("Moi ban nhap menu");
         System.out.println("1: Employee Management");
         System.out.println("2: Customer Management");
-        System.out.println("3: Customer Management");
-        System.out.println("4: Facility Management");
+        System.out.println("3: Facility Management");
+        System.out.println("4: Booking Managerment");
         System.out.println("5: Promotion Management");
         System.out.println("6: Exit");
-        int choice = scanner.nextInt();
+        int choice = employeeService.choiceMenu();
         while (true) {
+
              switch (choice) {
                  case 1:
-                     EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
                      System.out.println("1: Display list employees");
                      System.out.println("2: Add new employee");
                      System.out.println("3: Edit employee\n" +
@@ -76,10 +79,29 @@ public class FuramaController {
                      }
                      break;
                  case 3:
+                     FacilityServiceImpl facilityService = new FacilityServiceImpl();
                      System.out.println("1 Display list facility\n" +
                              "2. Add new facility\n" +
                              "3. Display list facility maintenance\n" +
                              "4. Return main menu");
+                     int choiceThree = scanner.nextInt();
+                     switch (choiceThree) {
+                         case 1:
+                             facilityService.showInfo();
+                             break;
+                         case 2:
+                             facilityService.addFacility();
+                             break;
+                         case 3:
+                             facilityService.displayListMaintenance();
+                             break;
+                         case 4:
+                             displayMainMenu();
+                             break;
+                         default:
+                             System.out.println("Khong co trong menu");
+                             break;
+                     }
                      break;
                  case 4:
                      System.out.println("1. Add new booking\n" +

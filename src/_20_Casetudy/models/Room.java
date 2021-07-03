@@ -3,7 +3,7 @@ package _20_Casetudy.models;
 public class Room extends Facility {
     String freeService;
 
-    public Room(String service, double area, double cost, int numberPerson, String rentalType, String freeService) {
+    public Room(String service, String area, String cost, String numberPerson, String rentalType, String freeService) {
         super(service, area, cost, numberPerson, rentalType);
         this.freeService = freeService;
     }
@@ -16,15 +16,15 @@ public class Room extends Facility {
         this.freeService = freeService;
     }
 
-    @Override
-    public String toString() {
-        return "Room{" +
-                "freeService='" + freeService + '\'' +
-                ", service='" + service + '\'' +
-                ", area=" + area +
-                ", cost=" + cost +
-                ", numberPerson=" + numberPerson +
-                ", rentalType='" + rentalType + '\'' +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Room{" +
+//                "freeService='" + freeService + '\'' +
+//                ", service='" + service + '\'' +
+//                ", area=" + area +
+//                ", cost=" + cost +
+//                ", numberPerson=" + numberPerson +
+//                ", rentalType='" + rentalType + '\'' +
+//                '}';
+//    }
 }
