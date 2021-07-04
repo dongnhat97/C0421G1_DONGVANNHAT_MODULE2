@@ -1,6 +1,8 @@
 package _20_Casetudy.models;
 
-public class Employee extends Person{
+import java.io.Serializable;
+
+public class Employee extends Person implements Serializable {
 
    private String position;
     private String salary;

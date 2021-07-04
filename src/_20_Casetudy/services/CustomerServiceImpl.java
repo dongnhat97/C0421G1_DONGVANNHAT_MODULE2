@@ -2,14 +2,18 @@ package _20_Casetudy.services;
 
 import _20_Casetudy.models.Customer;
 import _20_Casetudy.models.Employee;
+import _20_Casetudy.utils.ReadAndWriteByteStream;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
 public class CustomerServiceImpl implements CustomerService {
+     private static ReadAndWriteByteStream<Customer> readAndWriteByteStream = new ReadAndWriteByteStream<>();
 
+     private static File file = new File("C0421G1_DONGVANNHAT_MODULE22\\src\\_20_Casetudy\\data\\Customer.csv");
 
     private static Scanner scanner = new Scanner(System.in);
 
@@ -20,6 +24,11 @@ public class CustomerServiceImpl implements CustomerService {
     }
         String [] classifyArr = {"(Diamond,","Platinium,","Gold","Silver","Member"};
 
+    @Override
+    public List<Customer> getAll() {
+        customers = readAndWriteByteStream.readFileByteStream(file);
+        return customers;
+    }
 
     @Override
     public void save(Customer customer) {
@@ -28,6 +37,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void showInfo() {
+        getAll();
         for (Customer customer: customers) {
             if (customer!=null) {
                 System.out.println(customer);
@@ -43,8 +53,6 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void editCustomService() {
-
-
         boolean check = false;
         int index = 0;
         int id = Integer.parseInt(inputOutput("Nhap ID ban muon chinh sua"));
@@ -142,14 +150,11 @@ public class CustomerServiceImpl implements CustomerService {
                     default:
                         System.out.println("Khong co trong me nu chinh sua , vui long nhap lai");
                         break;
-
                 }
             }
-
         }
-
-//
-
+        readAndWriteByteStream.clearData(file);
+        readAndWriteByteStream.writeFileByteStream(customers,file);
     }
     public void addCustomService() {
         int id = Integer.parseInt(inputOutput("Nhap ID ban muon them vao"));
@@ -193,9 +198,9 @@ public class CustomerServiceImpl implements CustomerService {
                     break;
             }
         }
-
-
         Customer customer = new Customer(id,name,birthDay,gender,CMND,numberPhone,email,newClassify,address);
         save(customer);
+        readAndWriteByteStream.writeFileByteStream(customers,file);
+        System.out.println("Successful!");
     }
 }

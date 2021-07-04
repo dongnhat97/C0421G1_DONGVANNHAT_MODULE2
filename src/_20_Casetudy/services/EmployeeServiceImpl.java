@@ -10,10 +10,10 @@ import java.util.Scanner;
 
 public class EmployeeServiceImpl implements EmployeeService {
 //    Array List
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
     private static List<Employee> employees = new ArrayList<>();
-    private static File file = new File("C0421G1_DONGVANNHAT_MODULE22\\src\\_20_Casetudy\\data\\Employee.csv");
-    private static ReadAndWriteByteStream<Employee> readAndWriteByteStream = new ReadAndWriteByteStream<Employee>();
+    private static final File file = new File("C0421G1_DONGVANNHAT_MODULE22\\src\\_20_Casetudy\\data\\Employee.csv");
+    private static final ReadAndWriteByteStream<Employee> readAndWriteByteStream = new ReadAndWriteByteStream<>();
     static {
         employees.add(new Employee(1, "Nhat", "1997", "Nam", "098323838", "0978283122", "khong biet", "Giam doc","2000","pro"));
 
@@ -178,7 +178,8 @@ public class EmployeeServiceImpl implements EmployeeService {
             }
 
         }
-
+         readAndWriteByteStream.clearData(file);
+        readAndWriteByteStream.writeFileByteStream(employees,file);
     }
 
 
