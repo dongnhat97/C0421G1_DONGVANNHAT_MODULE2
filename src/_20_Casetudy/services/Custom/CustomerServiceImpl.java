@@ -1,11 +1,9 @@
-package _20_Casetudy.services;
+package _20_Casetudy.services.Custom;
 
 import _20_Casetudy.models.Customer;
-import _20_Casetudy.models.Employee;
 import _20_Casetudy.utils.ReadAndWriteByteStream;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -21,6 +19,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     static {
         customers.add(new Customer(1, "Nhat", "1997", "Nam", "0982363617", "hellomoto@gmail.com", "Vip", "Vip","HaNoi"));
+        readAndWriteByteStream.writeFileByteStream(customers,file);
     }
         String [] classifyArr = {"(Diamond,","Platinium,","Gold","Silver","Member"};
 
@@ -41,6 +40,8 @@ public class CustomerServiceImpl implements CustomerService {
         for (Customer customer: customers) {
             if (customer!=null) {
                 System.out.println(customer);
+            }else {
+                System.out.println("Chua co danh sach trong menu , moi ban them vao");
             }
         }
 

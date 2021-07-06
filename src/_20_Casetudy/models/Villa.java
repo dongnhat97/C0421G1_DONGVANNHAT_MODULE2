@@ -2,12 +2,12 @@ package _20_Casetudy.models;
 
 public class Villa extends Facility {
 
-    String roomStandardS;
-    String poolArea;
-    String floorsNumber;
+    private String roomStandardS;
+    private float poolArea;
+    private int floorsNumber;
 
 
-    public Villa(String service, String area, String cost, String numberPerson, String rentalType, String roomStandardS, String poolArea, String floorsNumber) {
+    public Villa(String service, float area, String cost, int numberPerson, String rentalType, String roomStandardS, float poolArea, int floorsNumber) {
         super(service, area, cost, numberPerson, rentalType);
         this.roomStandardS = roomStandardS;
         this.poolArea = poolArea;
@@ -22,19 +22,19 @@ public class Villa extends Facility {
         this.roomStandardS = roomStandardS;
     }
 
-    public String getPoolArea() {
+    public float getPoolArea() {
         return poolArea;
     }
 
-    public void setPoolArea(String poolArea) {
+    public void setPoolArea(float poolArea) {
         this.poolArea = poolArea;
     }
 
-    public String getFloorsNumber() {
+    public int getFloorsNumber() {
         return floorsNumber;
     }
 
-    public void setFloorsNumber(String floorsNumber) {
+    public void setFloorsNumber(int floorsNumber) {
         this.floorsNumber = floorsNumber;
     }
 
@@ -44,6 +44,11 @@ public class Villa extends Facility {
                 "roomStandardS='" + roomStandardS + '\'' +
                 ", poolArea='" + poolArea + '\'' +
                 ", floorsNumber='" + floorsNumber + '\'' +
+                ", service='" + service + '\'' +
+                ", area='" + area + '\'' +
+                ", cost='" + cost + '\'' +
+                ", numberPerson='" + numberPerson + '\'' +
+                ", rentalType='" + rentalType + '\'' +
                 '}';
     }
 }

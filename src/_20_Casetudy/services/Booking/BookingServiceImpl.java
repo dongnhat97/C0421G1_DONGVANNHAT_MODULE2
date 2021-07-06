@@ -1,7 +1,7 @@
-package _20_Casetudy.services;
+package _20_Casetudy.services.Booking;
 
 import _20_Casetudy.models.Booking;
-import _20_Casetudy.models.Customer;
+import _20_Casetudy.services.Booking.BookingService;
 
 import java.util.Scanner;
 import java.util.TreeSet;
@@ -19,7 +19,6 @@ public class BookingServiceImpl implements BookingService {
                System.out.println(bookings1);
            }
        }
-
     }
     private  String inputOutput(String message) {
         System.out.println(message);
@@ -35,7 +34,5 @@ public class BookingServiceImpl implements BookingService {
         int endDay = Integer.parseInt(inputOutput("Them ngay ket thuc"));
         String service = inputOutput("Them dich vu");
         String serviceLevel = inputOutput("Chat luong dich vu");
-
-
     }
 }

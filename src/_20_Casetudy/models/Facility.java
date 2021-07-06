@@ -1,16 +1,18 @@
 package _20_Casetudy.models;
 
-public abstract class Facility {
-    private String service;
-    private String area;
-    private String cost;
-    private String numberPerson;
-    private String rentalType;
+import java.io.Serializable;
+
+public abstract class Facility implements Serializable {
+    protected String service;
+    protected float area;
+    protected String cost;
+    protected int numberPerson;
+    protected String rentalType;
     public Facility() {
 
     }
 
-    public Facility(String service, String area, String cost, String numberPerson, String rentalType) {
+    public Facility(String service, float area, String cost, int numberPerson, String rentalType) {
         this.service = service;
         this.area = area;
         this.cost = cost;
@@ -26,11 +28,11 @@ public abstract class Facility {
         this.service = service;
     }
 
-    public String getArea() {
+    public float getArea() {
         return area;
     }
 
-    public void setArea(String area) {
+    public void setArea(float area) {
         this.area = area;
     }
 
@@ -42,11 +44,11 @@ public abstract class Facility {
         this.cost = cost;
     }
 
-    public String getNumberPerson() {
+    public int getNumberPerson() {
         return numberPerson;
     }
 
-    public void setNumberPerson(String numberPerson) {
+    public void setNumberPerson(int numberPerson) {
         this.numberPerson = numberPerson;
     }
 
@@ -62,7 +64,7 @@ public abstract class Facility {
     public String toString() {
         return "Facility{" +
                 "service='" + service + '\'' +
-                ", area='" + area + '\'' +
+                ", area=" + area +
                 ", cost='" + cost + '\'' +
                 ", numberPerson='" + numberPerson + '\'' +
                 ", rentalType='" + rentalType + '\'' +

@@ -1,5 +1,6 @@
-package _20_Casetudy.services;
+package _20_Casetudy.services.Employee;
 
+import _20_Casetudy.libs.Choice;
 import _20_Casetudy.models.Employee;
 import _20_Casetudy.utils.ReadAndWriteByteStream;
 
@@ -16,7 +17,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     private static final ReadAndWriteByteStream<Employee> readAndWriteByteStream = new ReadAndWriteByteStream<>();
     static {
         employees.add(new Employee(1, "Nhat", "1997", "Nam", "098323838", "0978283122", "khong biet", "Giam doc","2000","pro"));
-
+        readAndWriteByteStream.writeFileByteStream(employees,file);
     }
     String[] qualificationArr = {"University", "College", "Intermediate", "Postgraduate"};
     String[] positionArr = {"Le Tan","Phuc vu","Chuyen vien","Giam sat","Quan ly","Giam doc"};
@@ -24,7 +25,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public List getAll() {
       employees = readAndWriteByteStream.readFileByteStream(file);
-      return employees;
+        return employees;
     }
 
     @Override
@@ -72,7 +73,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             System.out.println("7: Chinh sua muc luong");
             System.out.println("8: Chinh sua chuc vu");
             System.out.println("9: Quay lai");
-            int choice = choiceMenu();
+            int choice = Choice.choiceMenu();
             switch (choice) {
                 case 1:
                     String newBirthday = inputOutput("Nhap ngay sinh ban muon chinh sua");
@@ -102,7 +103,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                     String qualification = "";
                     boolean isTrue = false;
                     while (!isTrue) {
-                        int choiceQual = choiceMenu();
+                        int choiceQual = Choice.choiceMenu();
                         switch (choiceQual) {
                             case 0:
                                 qualification = qualificationArr[0];
@@ -124,6 +125,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                                 System.out.println("level khong co trong muc chon , moi ban nhap lai");
                         }
                     }
+                    employees.get(index).setLevel(qualification);
                     break;
                 case 7:
                     String newSalary = inputOutput("Nhap muc luong ban muon thay doi");
@@ -137,7 +139,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                     String popSition = "";
                     boolean isTrue2 = false;
                     while (!isTrue2) {
-                        int choicePopsition = choiceMenu();
+                        int choicePopsition = Choice.choiceMenu();
                         switch (choicePopsition) {
                             case 0:
                                 popSition = positionArr[0];
@@ -199,7 +201,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         String qualification = "";
         boolean isTrue = false;
         while (!isTrue) {
-            int choiceQual = choiceMenu();
+            int choiceQual = Choice.choiceMenu();
             switch (choiceQual) {
                 case 0:
                     isTrue = true;
@@ -268,17 +270,5 @@ public class EmployeeServiceImpl implements EmployeeService {
         System.out.println("Successful!");
 
     }
-    public int choiceMenu() {
-        boolean check = false;
-        int choice = 0;
-        while (!check) {
-            try {
-                 choice = Integer.parseInt(inputOutput("Moi ban nhap menu"));
-                check = true;
-            }catch (NumberFormatException e) {
-                System.out.println("Nhap sai roi , moi ban nhap lai"+e.getMessage());
-            }
-        }
-        return choice;
-    }
+
 }
