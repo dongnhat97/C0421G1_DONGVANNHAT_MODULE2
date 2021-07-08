@@ -35,7 +35,7 @@ public class ValidateData {
     }
 //    Mã Room
     public static String roomCode() {
-        String regex = "^(SVVL)-[0-9]{4}$";
+        String regex = "^(SVR)-[0-9]{4}$";
         boolean check = false;
         String roomCode = null;
         while (!check) {

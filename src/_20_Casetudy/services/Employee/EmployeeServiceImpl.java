@@ -187,7 +187,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     public void addEmployee() {
         int id = Integer.parseInt(inputOutput("Nhap ID ban muon them vao"));
-        String name = inputOutput("Nhap ten ban myon them vao");
+        String name = inputOutput("Nhap ten ban muon them vao");
         String birthDay = inputOutput("Nhap ngay sinh ban muon them vao");
         String genDer = inputOutput("Nhap gioi tinh ban muon them vao");
         String CMND = inputOutput("Nhap CMND ban muon them vao");

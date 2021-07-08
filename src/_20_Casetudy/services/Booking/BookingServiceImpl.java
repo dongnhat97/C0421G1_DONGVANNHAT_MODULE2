@@ -1,25 +1,64 @@
 package _20_Casetudy.services.Booking;
 
+import _20_Casetudy.libs.Choice;
+import _20_Casetudy.libs.Comparator;
 import _20_Casetudy.models.Booking;
+import _20_Casetudy.models.Contract;
 import _20_Casetudy.services.Booking.BookingService;
+import _20_Casetudy.utils.ReadAndWriteByteStream;
 
-import java.util.Scanner;
-import java.util.TreeSet;
+import java.io.File;
+import java.util.*;
 
 public class BookingServiceImpl implements BookingService {
-    public static Scanner scanner = new Scanner(System.in);
-    public  static TreeSet<Booking> bookings = new TreeSet();
+    private static Scanner scanner = new Scanner(System.in);
+    private static Collection<Booking> bookingSet = new TreeSet<>(new Comparator());
+    private static Collection<Booking> bookingContractSet = new TreeSet<>(new Comparator());
+    private static Collection<Contract> contractList = new ArrayList<>();
+
+    private static ReadAndWriteByteStream<Booking> bookingFileReadWrite = new ReadAndWriteByteStream<>();
+    private static ReadAndWriteByteStream<Booking> needContractReadWrite = new ReadAndWriteByteStream<>();
+    private static ReadAndWriteByteStream<Contract> contractReadWrite = new ReadAndWriteByteStream<>();
+    private static File fileBooking = new File("C0421G1_DONGVANNHAT_MODULE22\\src\\_20_Casetudy\\data\\Booking.csv");
+    private static File fileNeedContact = new File("C0421G1_DONGVANNHAT_MODULE22\\src\\_20_Casetudy\\data\\NeedContract.csv");
+    private static File fileContract = new File("C0421G1_DONGVANNHAT_MODULE22\\src\\_20_Casetudy\\data\\Contract.csv");
+
+
     static {
-        bookings.add(new Booking("1",12,"25",18,"swim","vip"));
+        bookingSet = bookingFileReadWrite.readFileByteStream(fileBooking);
+        bookingContractSet = needContractReadWrite.readFileByteStream(fileNeedContact);
+        contractList = contractReadWrite.readFileByteStream(fileContract);
     }
     @Override
     public void showInfo() {
-       for (Booking bookings1 : bookings) {
-           if (bookings1!=null) {
-               System.out.println(bookings1);
-           }
-       }
+        if (bookingContractSet.isEmpty()) {
+            System.err.println("Not have new booking");
+        }
+        for (Booking element : bookingContractSet) {
+            System.out.println(element);
+        }
     }
+    public static String checkDuplicatedId() { //check ID trùng
+        String bookingId = null;
+        boolean check = false;
+        while (!check) {
+            int count = 0;
+            bookingId = Choice.inputOutput("Enter booking ID: ");
+            for (Booking booking : bookingSet) {
+                if (!bookingId.equals(booking.getBookingID())) {
+                    count++;
+                }
+            }
+            if (count == bookingSet.size()) {
+                System.out.println("ok");
+                check = true;
+            } else {
+                System.out.println("Booking ID cannot be duplicated! Please enter again: ");
+            }
+        }
+        return bookingId;
+    }
+    
     private  String inputOutput(String message) {
         System.out.println(message);
         String output = scanner.nextLine();

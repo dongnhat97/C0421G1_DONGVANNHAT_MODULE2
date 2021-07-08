@@ -1,28 +1,28 @@
 package _20_Casetudy.models;
 
 public class Booking implements Comparable<Booking> {
-    private String codeBook;
+    private String bookingID;
     private int startDay;
-    private String CodeCustomer;
+    private String codeCustomer;
     private int endDay;
     private String service;
     private String serviceLevel;
 
-    public Booking(String codeBook, int startDay, String codeCustomer, int endDay, String service, String serviceLevel) {
-        this.codeBook = codeBook;
+    public Booking(String bookingID, int startDay, String codeCustomer, int endDay, String service, String serviceLevel) {
+        this.bookingID = bookingID;
         this.startDay = startDay;
-        CodeCustomer = codeCustomer;
+        this.codeCustomer = codeCustomer;
         this.endDay = endDay;
         this.service = service;
         this.serviceLevel = serviceLevel;
     }
 
-    public String getCodeBook() {
-        return codeBook;
+    public String getBookingID() {
+        return bookingID;
     }
 
-    public void setCodeBook(String codeBook) {
-        this.codeBook = codeBook;
+    public void setBookingID(String bookingID) {
+        this.bookingID = bookingID;
     }
 
     public int getStartDay() {
@@ -34,11 +34,11 @@ public class Booking implements Comparable<Booking> {
     }
 
     public String getCodeCustomer() {
-        return CodeCustomer;
+        return codeCustomer;
     }
 
     public void setCodeCustomer(String codeCustomer) {
-        CodeCustomer = codeCustomer;
+        this.codeCustomer = codeCustomer;
     }
 
     public int getEndDay() {
@@ -68,9 +68,9 @@ public class Booking implements Comparable<Booking> {
     @Override
     public String toString() {
         return "Booking{" +
-                "codeBook='" + codeBook + '\'' +
+                "bookingID='" + bookingID + '\'' +
                 ", startDay=" + startDay +
-                ", CodeCustomer='" + CodeCustomer + '\'' +
+                ", CodeCustomer='" + codeCustomer + '\'' +
                 ", endDay=" + endDay +
                 ", service='" + service + '\'' +
                 ", serviceLevel='" + serviceLevel + '\'' +
@@ -84,6 +84,7 @@ public class Booking implements Comparable<Booking> {
         } else if (o.getStartDay() < this.getStartDay()) {
             return -1;
         } else {
+
             return 0;
         }
     }
