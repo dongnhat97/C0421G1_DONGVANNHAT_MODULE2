@@ -33,11 +33,11 @@ public class Customer extends Person {
                 ", address='" + address + '\'' +
                 ", id=" + id +
                 ", name='" + name + '\'' +
-                ", birthDay='" + birthDay + '\'' +
+                ", birthDay='" + birthday + '\'' +
                 ", gender='" + gender + '\'' +
-                ", cMND='" + cMND + '\'' +
+                ", cMND='" + identityCard + '\'' +
                 ", numberPhone='" + numberPhone + '\'' +
-                ", eMail='" + eMail + '\'' +
+                ", eMail='" + email + '\'' +
                 '}';
     }
 }

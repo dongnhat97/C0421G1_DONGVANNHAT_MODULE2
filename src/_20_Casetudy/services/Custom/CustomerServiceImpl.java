@@ -1,5 +1,7 @@
 package _20_Casetudy.services.Custom;
 
+import _20_Casetudy.libs.Choice;
+import _20_Casetudy.libs.ValidateData;
 import _20_Casetudy.models.Customer;
 import _20_Casetudy.utils.ReadAndWriteByteStream;
 
@@ -10,17 +12,14 @@ import java.util.Scanner;
 
 public class CustomerServiceImpl implements CustomerService {
      private static ReadAndWriteByteStream<Customer> readAndWriteByteStream = new ReadAndWriteByteStream<>();
-
      private static File file = new File("C0421G1_DONGVANNHAT_MODULE22\\src\\_20_Casetudy\\data\\Customer.csv");
+     private static Scanner scanner = new Scanner(System.in);
+     static List<Customer> customers = new LinkedList<>();
 
-    private static Scanner scanner = new Scanner(System.in);
-
-    static List<Customer> customers = new LinkedList<>();
-
-    static {
-        customers.add(new Customer(1, "Nhat", "1997", "Nam", "0982363617", "hellomoto@gmail.com", "Vip", "Vip","HaNoi"));
-        readAndWriteByteStream.writeFileByteStream(customers,file);
-    }
+//     static {
+//        customers.add(new Customer(1, "Nhat", "1997", "Nam", "0982363617", "hellomoto@gmail.com", "Vip", "Vip","HaNoi"));
+//        readAndWriteByteStream.writeFileByteStream(customers,file);
+//    }
         String [] classifyArr = {"(Diamond,","Platinium,","Gold","Silver","Member"};
 
     @Override
@@ -78,33 +77,31 @@ public class CustomerServiceImpl implements CustomerService {
             System.out.println("0: Quay lai");
             boolean check2 = false;
             while (!check2) {
-                int choiceCustom = scanner.nextInt();
+                int choiceCustom = Choice.choiceMenu();
                 switch (choiceCustom) {
                     case 1:
-
-                        String newBirthday = inputOutput("ngay");
-                        customers.get(index).setBirthDay(newBirthday);
+                        String newBirthday = ValidateData.dateOfBirth();
+                        customers.get(index).setBirthday(newBirthday);
                         check2 = true;
                         break;
                     case 2:
-
-                        String newMale = inputOutput("gioi tinh");
+                        String newMale = Choice.outputStringRegex("Nhập gipứo tính thay thế");
                         customers.get(index).setGender(newMale);
                         check2 = true;
                         break;
                     case 3:
-                        String newCMND = inputOutput("Nhap CMND moi");
-                        customers.get(index).setcMND(newCMND);
+                        String newCMND = Choice.outputStringRegex("Nhap CMND moi");
+                        customers.get(index).setIdentityCard(newCMND);
                         check2 = true;
                         break;
                     case 4:
-                        String newNumberPhone = inputOutput("Nhap so dien thoai moi");
+                        String newNumberPhone = Choice.outputStringRegex("Nhap so dien thoai moi");
                         customers.get(index).setNumberPhone(newNumberPhone);
                         check2 = true;
                         break;
                     case 5:
-                        String newEmail = inputOutput("Nhap emaill moi");
-                        customers.get(index).seteMail(newEmail);
+                        String newEmail = Choice.outputStringRegex("Nhap emaill moi");
+                        customers.get(index).setEmail(newEmail);
                         check2 = true;
                         break;
                     case 6:
@@ -114,7 +111,7 @@ public class CustomerServiceImpl implements CustomerService {
                             for (int i = 0; i < classifyArr.length; i++) {
                                 System.out.println(i + " " + classifyArr[i]);
                             }
-                            int choiceClassify = Integer.parseInt(inputOutput("Moi ban chinh sua theo menu"));
+                            int choiceClassify = Choice.choiceMenu();
                             switch (choiceClassify) {
                                 case 0:
                                     classity = classifyArr[0];
@@ -158,9 +155,25 @@ public class CustomerServiceImpl implements CustomerService {
         readAndWriteByteStream.writeFileByteStream(customers,file);
     }
     public void addCustomService() {
-        int id = Integer.parseInt(inputOutput("Nhap ID ban muon them vao"));
-        String name = inputOutput("Moi ban nhap ten");
-        String birthDay = inputOutput("Nhap ngay sinh ban muon them vao");
+        boolean check = false;
+        int count = 0;
+        int id = 0;
+        while (!check) {
+            id = Choice.choiceMenuMini("Nhập ID thêm mới");
+            for (Customer element: customers) {
+                if (id!=element.getId()) {
+                    count++;
+                }
+            }
+            if (count==customers.size()) {
+                check = true;
+            }else {
+                System.out.println("Trùng ID rồi , mời bạn nhập lại");
+            }
+
+        }
+        String name = Choice.outputStringRegex("Nhập tên bạn muốn thêm vào ");
+        String birthDay = ValidateData.dateOfBirth();
         String gender = inputOutput("Nhap gioi tinh ban muon them vao");
         String CMND = inputOutput("Nhap CMND ban muon them vao");
         String numberPhone = inputOutput("Nhap so dien thoai ban muon them vao");
@@ -172,7 +185,7 @@ public class CustomerServiceImpl implements CustomerService {
         String newClassify = "";
         boolean isTrue2 = false;
         while (!isTrue2) {
-            int choicePopsition=  Integer.parseInt(inputOutput("Moi nhap cap bac ban muon them vao"));
+            int choicePopsition=  Choice.choiceMenu();
             switch (choicePopsition) {
                 case 0:
                     newClassify = classifyArr[0];

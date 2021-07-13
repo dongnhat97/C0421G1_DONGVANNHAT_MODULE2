@@ -1,6 +1,7 @@
 package _20_Casetudy.services.Employee;
 
 import _20_Casetudy.libs.Choice;
+import _20_Casetudy.libs.ValidateData;
 import _20_Casetudy.models.Employee;
 import _20_Casetudy.utils.ReadAndWriteByteStream;
 
@@ -16,8 +17,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     private static final File file = new File("C0421G1_DONGVANNHAT_MODULE22\\src\\_20_Casetudy\\data\\Employee.csv");
     private static final ReadAndWriteByteStream<Employee> readAndWriteByteStream = new ReadAndWriteByteStream<>();
     static {
+
         employees.add(new Employee(1, "Nhat", "1997", "Nam", "098323838", "0978283122", "khong biet", "Giam doc","2000","pro"));
-        readAndWriteByteStream.writeFileByteStream(employees,file);
+//        readAndWriteByteStream.writeFileByteStream(employees,file);
+
     }
     String[] qualificationArr = {"University", "College", "Intermediate", "Postgraduate"};
     String[] positionArr = {"Le Tan","Phuc vu","Chuyen vien","Giam sat","Quan ly","Giam doc"};
@@ -64,36 +67,37 @@ public class EmployeeServiceImpl implements EmployeeService {
             System.out.println("Khong tim duoc ID ban muon chinh sua");
         } else {
             System.out.println("Moi ban chon muc chinh sua");
-            System.out.println("1: Chinh sua ngay sinh");
-            System.out.println("2: Chinh sua gioi tinh");
-            System.out.println("3: Chinh sua CMND");
-            System.out.println("4: Chinh sua So dien thoai");
-            System.out.println("5: Chinh sua emaill");
-            System.out.println("6: Chinh sua trinh do");
-            System.out.println("7: Chinh sua muc luong");
-            System.out.println("8: Chinh sua chuc vu");
-            System.out.println("9: Quay lai");
+            System.out.println("1: Chỉnh sửa tên");
+            System.out.println("2: Chinh sua ngay sinh");
+            System.out.println("3: Chinh sua gioi tinh");
+            System.out.println("4: Chinh sua CMND");
+            System.out.println("5: Chinh sua So dien thoai");
+            System.out.println("6: Chinh sua emaill");
+            System.out.println("7: Chinh sua trinh do");
+            System.out.println("8: Chinh sua muc luong");
+            System.out.println("9: Chinh sua chuc vu");
+            System.out.println("0: Quay lai");
             int choice = Choice.choiceMenu();
             switch (choice) {
                 case 1:
-                    String newBirthday = inputOutput("Nhap ngay sinh ban muon chinh sua");
-                    employees.get(index).setBirthDay(newBirthday);
+                    String newBirthday = Choice.outputStringRegex("Nhap ngay sinh ban muon chinh sua");
+                    employees.get(index).setBirthday(newBirthday);
                     break;
                 case 2:
-                    String newGender = inputOutput("Nhap gioi tinh ban muon chinh sua");
+                    String newGender = Choice.outputStringRegex("Nhap gioi tinh ban muon chinh sua");
                     employees.get(index).setGender(newGender);
                     break;
                 case 3:
-                    String newCMND = inputOutput("Nhap CMND ban muon chinh sua");
-                    employees.get(index).setcMND(newCMND);
+                    String newIdentityCard = Choice.outputStringRegex("Nhap CMND ban muon chinh sua");
+                    employees.get(index).setIdentityCard(newIdentityCard);
                     break;
                 case 4:
-                    String newNumberPhone = inputOutput("Nhap so dien thoai ban muon chinh sua");
+                    String newNumberPhone = Choice.outputStringRegex("Nhap so dien thoai ban muon chinh sua");
                     employees.get(index).setNumberPhone(newNumberPhone);
                     break;
                 case 5:
-                    String newEmail = inputOutput("Nhap email ban muon chinh sua");
-                    employees.get(index).seteMail(newEmail);
+                    String newEmail = Choice.outputStringRegex("Nhap email ban muon chinh sua");
+                    employees.get(index).setEmail(newEmail);
                     break;
                 case 6:
                     System.out.println("Moi ban chon level nhan vien");
@@ -122,7 +126,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                                 isTrue = true;
                                 break;
                             default:
-                                System.out.println("level khong co trong muc chon , moi ban nhap lai");
+                                System.out.println("bạn nhập chưa đúng fomat, mời bạn nhập lại");
                         }
                     }
                     employees.get(index).setLevel(qualification);
@@ -182,18 +186,36 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
          readAndWriteByteStream.clearData(file);
         readAndWriteByteStream.writeFileByteStream(employees,file);
+
     }
 
 
     public void addEmployee() {
-        int id = Integer.parseInt(inputOutput("Nhap ID ban muon them vao"));
-        String name = inputOutput("Nhap ten ban muon them vao");
-        String birthDay = inputOutput("Nhap ngay sinh ban muon them vao");
-        String genDer = inputOutput("Nhap gioi tinh ban muon them vao");
-        String CMND = inputOutput("Nhap CMND ban muon them vao");
-        String numberPhone = inputOutput("Nhap so dien thoai ban muon them vao");
-        String email = inputOutput("Nhap email ban muon them vao");
-        String Salary = inputOutput("Nhap muc luong ban muon them vao");
+         getAll();
+         boolean check = false;
+         int count = 0;
+         int id = 0;
+         while (!check) {
+              id = Choice.choiceMenuMini("Nhập ID thêm mới");
+             for (Employee element: employees) {
+                 if (id!=element.getId()) {
+                     count++;
+                 }
+             }
+             if (count==employees.size()) {
+                 check = true;
+             }else {
+                 System.out.println("Trùng ID rồi , mời bạn nhập lại");
+             }
+         }
+
+        String name = Choice.outputStringRegex("nhap tên bạn muốn thêm vào");
+        String birthday = ValidateData.dateOfBirth();
+        String gender = Choice.outputStringRegex("Nhập giới tính bạn muốn thêm vào");
+        String identityCard = Choice.outputStringRegex("Nhap CMND ban muon them vao");
+        String numberPhone = Choice.outputStringRegex("Nhap so dien thoai ban muon them vao");
+        String email = ValidateData.emaill();
+        String Salary = Choice.outputStringRegex("Nhap muc luong ban muon them vao");
         System.out.println("Them trinh do hoc van");
         for (int i = 0; i < qualificationArr.length; i++) {
             System.out.println(i + ") " + qualificationArr[i]);
@@ -231,7 +253,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         String popSition = "";
         boolean isTrue2 = false;
         while (!isTrue2) {
-            int choicePopsition=  Integer.parseInt(inputOutput("Moi nhap cap bac ban muon them vao"));
+            int choicePopsition=  Choice.choiceMenuMini("Moi bạn nhập cấp bậc muốn thêm vào");
             switch (choicePopsition) {
 
                 case 0:
@@ -264,8 +286,8 @@ public class EmployeeServiceImpl implements EmployeeService {
             }
         }
 
-        Employee employee = new Employee(id,name,birthDay,genDer,CMND,numberPhone,email,popSition,Salary,qualification);
-        save(employee);
+        employees.add(new Employee(id,name,birthday,gender,identityCard,numberPhone,email,popSition,Salary,qualification)) ;
+//        save(employee);
         readAndWriteByteStream.writeFileByteStream(employees,file);
         System.out.println("Successful!");
 

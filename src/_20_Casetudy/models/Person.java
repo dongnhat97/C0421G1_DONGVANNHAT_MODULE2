@@ -5,21 +5,23 @@ import java.io.Serializable;
 public abstract class Person implements Serializable {
     protected int id;
     protected String name;
-    protected String birthDay;
+    protected String birthday;
     protected String gender;
-    protected String cMND;
+    protected String identityCard;
     protected String numberPhone;
-    protected String eMail;
+    protected String email;
 
-    public Person(int id, String name, String birthDay, String gender, String cMND, String numberPhone, String eMail) {
+    public Person(int id, String name, String birthday, String gender, String identityCard, String numberPhone, String eMail) {
         this.id = id;
         this.name = name;
-        this.birthDay = birthDay;
+        this.birthday = birthday;
         this.gender = gender;
-        this.cMND = cMND;
+        this.identityCard = identityCard;
         this.numberPhone = numberPhone;
-        this.eMail = eMail;
+        this.email = eMail;
     }
+
+
 
     public int getId() {
         return id;
@@ -37,12 +39,12 @@ public abstract class Person implements Serializable {
         this.name = name;
     }
 
-    public String getBirthDay() {
-        return birthDay;
+    public String getBirthday() {
+        return birthday;
     }
 
-    public void setBirthDay(String birthDay) {
-        this.birthDay = birthDay;
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
     }
 
     public String getGender() {
@@ -53,12 +55,12 @@ public abstract class Person implements Serializable {
         this.gender = gender;
     }
 
-    public String getcMND() {
-        return cMND;
+    public String getIdentityCard() {
+        return identityCard;
     }
 
-    public void setcMND(String cMND) {
-        this.cMND = cMND;
+    public void setIdentityCard(String identityCard) {
+        this.identityCard = identityCard;
     }
 
     public String getNumberPhone() {
@@ -69,12 +71,12 @@ public abstract class Person implements Serializable {
         this.numberPhone = numberPhone;
     }
 
-    public String geteMail() {
-        return eMail;
+    public String getEmail() {
+        return email;
     }
 
-    public void seteMail(String eMail) {
-        this.eMail = eMail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
@@ -82,11 +84,11 @@ public abstract class Person implements Serializable {
         return "Person{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", birthDay='" + birthDay + '\'' +
+                ", birthday='" + birthday + '\'' +
                 ", gender='" + gender + '\'' +
-                ", cMND=" + cMND +
+                ", identityCard='" + identityCard + '\'' +
                 ", numberPhone='" + numberPhone + '\'' +
-                ", eMail='" + eMail + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 }

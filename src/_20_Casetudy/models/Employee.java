@@ -1,19 +1,19 @@
 package _20_Casetudy.models;
 
-import java.io.Serializable;
-
 public class Employee extends Person  {
 
    private String position;
     private String salary;
     private String level;
 
-    public Employee(int id, String name, String birthDay, String gender, String cMND, String numberPhone, String eMail, String position, String salary, String level) {
-        super(id, name, birthDay, gender, cMND, numberPhone, eMail);
+    public Employee(int id, String name, String birthday, String gender, String identityCard, String numberPhone, String eMail, String position, String salary, String level) {
+        super(id, name, birthday, gender, identityCard, numberPhone, eMail);
         this.position = position;
         this.salary = salary;
         this.level = level;
     }
+
+
 
     public String getPosition() {
         return position;
@@ -42,16 +42,16 @@ public class Employee extends Person  {
     @Override
     public String toString() {
         return "Employee{" +
-                ", id=" + id +
-                ", name='" + name + '\'' +
-                ", birthDay='" + birthDay + '\'' +
-                ", gender='" + gender + '\'' +
-                ", cMND='" + cMND + '\'' +
-                ", numberPhone='" + numberPhone + '\'' +
-                ", eMail='" + eMail + '\'' +
-                ", position='" + position + '\'' +
+                "position='" + position + '\'' +
                 ", salary='" + salary + '\'' +
                 ", level='" + level + '\'' +
+                ", id=" + id +
+                ", name='" + name + '\'' +
+                ", birthday='" + birthday + '\'' +
+                ", gender='" + gender + '\'' +
+                ", identityCard='" + identityCard + '\'' +
+                ", numberPhone='" + numberPhone + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 }

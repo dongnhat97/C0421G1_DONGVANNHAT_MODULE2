@@ -4,9 +4,7 @@ import _20_Casetudy.libs.Choice;
 import _20_Casetudy.libs.Comparator;
 import _20_Casetudy.models.Booking;
 import _20_Casetudy.models.Contract;
-import _20_Casetudy.services.Booking.BookingService;
 import _20_Casetudy.utils.ReadAndWriteByteStream;
-
 import java.io.File;
 import java.util.*;
 
@@ -23,12 +21,12 @@ public class BookingServiceImpl implements BookingService {
     private static File fileNeedContact = new File("C0421G1_DONGVANNHAT_MODULE22\\src\\_20_Casetudy\\data\\NeedContract.csv");
     private static File fileContract = new File("C0421G1_DONGVANNHAT_MODULE22\\src\\_20_Casetudy\\data\\Contract.csv");
 
-
     static {
         bookingSet = bookingFileReadWrite.readFileByteStream(fileBooking);
         bookingContractSet = needContractReadWrite.readFileByteStream(fileNeedContact);
         contractList = contractReadWrite.readFileByteStream(fileContract);
     }
+
     @Override
     public void showInfo() {
         if (bookingContractSet.isEmpty()) {
@@ -38,12 +36,13 @@ public class BookingServiceImpl implements BookingService {
             System.out.println(element);
         }
     }
+
     public static String checkDuplicatedId() { //check ID trùng
         String bookingId = null;
         boolean check = false;
         while (!check) {
             int count = 0;
-            bookingId = Choice.inputOutput("Enter booking ID: ");
+            bookingId = Choice.outputStringRegex("Enter booking ID: ");
             for (Booking booking : bookingSet) {
                 if (!bookingId.equals(booking.getBookingID())) {
                     count++;
@@ -58,8 +57,8 @@ public class BookingServiceImpl implements BookingService {
         }
         return bookingId;
     }
-    
-    private  String inputOutput(String message) {
+
+    private String inputOutput(String message) {
         System.out.println(message);
         String output = scanner.nextLine();
         return output;
@@ -67,11 +66,19 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public void addBooking() {
-        String codeBook  = inputOutput("Nhap ma booking ban muon them vao");
-        int startDay = Integer.parseInt(inputOutput("Ngay bat dau"));
-        String codeCustomer = inputOutput("Them ma khach hang");
-        int endDay = Integer.parseInt(inputOutput("Them ngay ket thuc"));
-        String service = inputOutput("Them dich vu");
-        String serviceLevel = inputOutput("Chat luong dich vu");
+        System.out.println("1. book house vs id book la BH-01");
+        System.out.println("2. book Room vs id book la BR-01");
+        System.out.println("3. book Villa vs id book la BV-01");
+        System.out.println("nhap lua chon cua ban");
+        int choice = Choice.choiceMenu();
+        switch (choice) {
+            case 1:
+                String newID = checkDuplicatedId();
+
+                break;
+            case 2:
+
+
+        }
     }
 }

@@ -52,7 +52,8 @@ public class FuramaController {
                      System.exit(6);
                      break;
                  default:
-                     System.out.println("nhap sai roi moi ban nhap lai");
+                     System.out.println("Không có trong menu , mời bạn nhập lại");
+                     displayMainMenu();
              }
 
         }

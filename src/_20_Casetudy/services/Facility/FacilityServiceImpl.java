@@ -1,12 +1,13 @@
 package _20_Casetudy.services.Facility;
 
+
 import _20_Casetudy.libs.Choice;
 import _20_Casetudy.libs.ValidateData;
-import _20_Casetudy.models.*;
-import _20_Casetudy.services.Employee.EmployeeServiceImpl;
-import _20_Casetudy.services.Facility.FacilityService;
+import _20_Casetudy.models.Facility;
+import _20_Casetudy.models.House;
+import _20_Casetudy.models.Room;
+import _20_Casetudy.models.Villa;
 import _20_Casetudy.utils.ReadAndWriteByteStream;
-
 import java.io.File;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -14,8 +15,7 @@ import java.util.Scanner;
 
 public class FacilityServiceImpl implements FacilityService {
 
-    private static Scanner scanner = new Scanner(System.in);
-    private static Map<Facility, Integer> facilityMap = new LinkedHashMap<>();
+    private static Scanner scanner = new Scanner(System.in);private static Map<Facility, Integer> facilityMap = new LinkedHashMap<>();
    private static ReadAndWriteByteStream<House> readwriteHouse = new ReadAndWriteByteStream<>();
    private static ReadAndWriteByteStream<Villa> readwriteVilla = new ReadAndWriteByteStream<>();
    private static ReadAndWriteByteStream<Room> readwriteRoom = new ReadAndWriteByteStream<>();

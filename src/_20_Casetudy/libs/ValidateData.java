@@ -1,9 +1,12 @@
 package _20_Casetudy.libs;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.regex.Pattern;
 
 public class ValidateData {
-//    Mã Villa
+    //    Mã Villa
     public static String villaCode() {
         String regex = "^(SVVL)-[0-9]{4}$";
         boolean check = false;
@@ -11,7 +14,7 @@ public class ValidateData {
         while (!check) {
             villaCode = Choice.inputOutput("Moi ban nhap ma code cho villa");
             if (Pattern.matches(regex,villaCode)) {
-                 check = true;
+                check = true;
             }else {
                 System.out.println("Villa code la: 'SVVL-XXXX', X la so nguyen tu 0-9");
             }
@@ -33,13 +36,13 @@ public class ValidateData {
         }
         return houCode;
     }
-//    Mã Room
+    //    Mã Room
     public static String roomCode() {
         String regex = "^(SVR)-[0-9]{4}$";
         boolean check = false;
         String roomCode = null;
         while (!check) {
-            roomCode = Choice.inputOutput("Moi ban nhap ma code cho Room");
+            roomCode = Choice.outputStringRegex("Moi ban nhap ma code cho Room");
             if (Pattern.matches(regex,roomCode)) {
                 check = true;
             }else {
@@ -63,9 +66,9 @@ public class ValidateData {
         }
         return name;
     }
-//    Diện tích hồ bơi
+    //    Diện tích hồ bơi
     public static float area() {
-        String regex = "([1]\\d{2}.\\d{1,2})|([3-9][0-9].\\d{1,2})$";
+        String regex = "^(([3-9]\\d+)|([12]\\d{2,}))\\.\\d$";
         boolean check = false;
         float area = 0;
         while (!check) {
@@ -155,6 +158,62 @@ public class ValidateData {
             }
         }
         return villaStandard;
+    }
+    public static String dateOfBirth() {  //ok
+        String regex = "^(?=\\d{2}([\\/])\\d{2}\\1\\d{4}$)(?:0[1-9]|1\\d|[2][0-8]|29(?!.02.(?!(?!(?:[02468][1-35-79]|" +
+                "[13579][0-13-57-9])00)\\d{2}(?:[02468][048]|[13579][26])))|30(?!.02)|31(?=.(?:0[13578]|10|12))).(?:0[1-9]|1[012]).\\d{4}$";
+        boolean check = false;
+        String birthDate = null;
+        while (!check) {
+            birthDate = Choice.inputOutput("Nhập ngày sinh theo format: 'dd/MM/yyy': ");
+            //check format:
+            if (Pattern.matches(regex, birthDate)) {
+                check = checkAge(birthDate);
+            } else {
+                System.err.println("Wrong format. Please input day according to format: 'dd/MM/yyy'\n" +
+                        "And make sure the number of days in the month is valid ");
+            }
+        }
+        return birthDate;
+    }
+    public static boolean checkAge(String birthDay) {
+        //check số tuổi:
+        //check số ngày case rieeeng từng tháng:
+        String[] arr = birthDay.split("/");
+        int day = Integer.parseInt(arr[0]);
+        int month = Integer.parseInt(arr[1]);
+        int year = Integer.parseInt(arr[2]);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); //tạo pattern. nếu không --> default = ISO_LOCAL_DATE: yyyy-mm-dd  --> báo Ex
+        LocalDate birthDate_LocalDay = LocalDate.parse(birthDay, formatter);  //ép kiểu ngày sinh: String--> LocalDay theo định dạng "dd/MM/yyyy"
+        LocalDate currentDate = LocalDate.now();  //lấy ngày hiện tại của hệ thống
+        int years_gap = Period.between(birthDate_LocalDay, currentDate).getYears();  //lấy tuổi
+        int month_gap = Period.between(birthDate_LocalDay, currentDate).getMonths();  //lấy tuổi
+        int day_gap = Period.between(birthDate_LocalDay, currentDate).getDays();  //lấy tuổi
+        if (years_gap > 18 && years_gap <= 100) {
+            System.out.println("ok");
+            return true;
+        } else if (years_gap == 18 && month_gap >= 0 && day_gap >= 0) {
+            System.out.println("ok");
+            return true;
+        } else {
+            System.err.println("Age is out of range: age must be >=18 and <=100 ");
+            return false;
+        }
+    }
+    public static String emaill() {
+        String regex ="^[A-Za-z0-9]+@[a-z]+\\.[a-z]+$";
+        boolean check = false;
+        String emaill = null;
+        while (!check) {
+            emaill = Choice.inputOutput("Nhạp emaill thêm mới");
+            if (Pattern.matches(regex,emaill)) {
+                check = true;
+            }else {
+                System.out.println("Bạn nhập chưa đúng với Fomat , vui lòng nhập lại");
+            }
+        }
+        return emaill;
     }
 
 }
